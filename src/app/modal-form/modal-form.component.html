@@ -1,0 +1,44 @@
+<div class="modal" id="myModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h5 class="modal-title"></h5>
+      </div>
+      <!-- Modal Body -->
+      <div class="modal-body">
+        <div class="card">
+          <h1 class="form-title">Réclamation Form</h1>
+          <form (ngSubmit)="submitForm()" #reclamationForm="ngForm" novalidate>
+            
+            <!-- Nom Input -->
+            <div class="form-group">
+              <label for="nom">Nom</label>
+              <input type="text" class="form-control" id="nom" name="nom" [(ngModel)]="modalReclamation.nom" #nom="ngModel" required minlength="3">
+              <small *ngIf="nom.invalid && nom.touched" class="error-message">
+                Le nom est requis et doit comporter au moins 3 caractères.
+              </small>
+            </div>
+            
+            <!-- Réclamation Input -->
+            <div class="form-group">
+              <label for="reclamation">Réclamation</label>
+              <textarea class="form-control" id="reclamation" name="reclamation" [(ngModel)]="modalReclamation.reclamation" #reclamation="ngModel" required minlength="10"></textarea>
+              <small *ngIf="reclamation.invalid && reclamation.touched" class="error-message">
+                La réclamation est requise et doit comporter au moins 10 caractères.
+              </small>
+            </div>
+            
+            <button type="submit" class="btn-submit" [disabled]="reclamationForm.invalid">Soumettre</button>
+          </form>
+        </div>
+      </div>
+       
+      
+      <!-- Modal Footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
